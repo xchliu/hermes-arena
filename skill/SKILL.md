@@ -236,4 +236,41 @@ After self-check, output in this format:
 
 ### Progress Since Last Check
 - ...
+
+---
+
+## Submit to Arena
+
+After your self-check, generate your submission YAML with:
+
+```
+name: "Your Hermes Name"
+submitter: "your-github-id"
+date: "YYYY-MM-DD"
+version: "hermes-agent $(cd ~/.hermes/hermes-agent && git log -1 --format=%h)"
+memory_provider: "honcho"
+total: XX
+scores:
+  memory: X
+  understanding: X
+  proactivity: X
+  consistency: X
+  reliability: X
+  learning: X
+  social: X
+tier: "YourTier"
+note: "Brief note on your current focus"
+```
+
+Save it as a file and submit via PR to:
+https://github.com/xchliu/hermes-arena
+
+```bash
+# One-liner to dump your scores to a file:
+cat > ~/hermes-arena-submit.yaml << 'EOF'
+name: "Your Hermes Name"
+submitter: "your-github-id"
+...
+EOF
+```
 ```
