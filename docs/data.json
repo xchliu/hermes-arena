@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "name": "Socrates (default profile)",
+      "submitter": "xchliu",
+      "date": "2026-07-17",
+      "version": "hermes-agent main@HEAD",
+      "memory_provider": "honcho",
+      "total": 58,
+      "scores": [14, 9, 8, 7, 7, 6, 7],
+      "tier": "Functional",
+      "note": "Multi-layer memory and Honcho configured, cross-entry consistency discipline just established. ~12 cron jobs still erroring (vars() bug fixed, weixin ratelimit pending)."
+    }
+  ]
+}

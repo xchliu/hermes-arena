@@ -1,0 +1,52 @@
+name: Build leaderboard
+on:
+  push:
+    branches: [main]
+    paths: ['entries/**']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate data.json from entries
+        run: |
+          python3 -c "
+          import os, json, yaml
+          entries_dir = 'entries'
+          data = {'entries': []}
+          if os.path.isdir(entries_dir):
+            for fname in sorted(os.listdir(entries_dir)):
+              if fname.endswith(('.yaml','.yml')):
+                with open(os.path.join(entries_dir, fname)) as f:
+                  e = yaml.safe_load(f)
+                  if e and 'total' in e:
+                    s = e.get('scores', [])
+                    if isinstance(s, dict):
+                      s = [s.get(k,0) for k in ['memory','understanding','proactivity','consistency','reliability','learning','social']]
+                    data['entries'].append({
+                      'name': e.get('name','Anonymous'),
+                      'submitter': e.get('submitter','?'),
+                      'date': e.get('date','?'),
+                      'version': e.get('version',''),
+                      'memory_provider': e.get('memory_provider',''),
+                      'total': e['total'],
+                      'scores': s,
+                      'tier': e.get('tier','Newborn'),
+                      'note': e.get('note','')
+                    })
+          data['entries'].sort(key=lambda x: x['total'], reverse=True)
+          with open('docs/data.json','w') as f:
+            json.dump(data, f, indent=2)
+          print(f'✅ Built {len(data[\"entries\"])} entries')
+          "
+      - name: Commit & push
+        run: |
+          git config user.name 'Hermes Arena Bot'
+          git config user.email 'bot@hermes-arena'
+          git add docs/data.json
+          git diff --staged --quiet || (git commit -m 'auto: update leaderboard' && git push)

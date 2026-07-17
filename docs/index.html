@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Arena — Agent Capability Leaderboard</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; background: var(--bg); color: var(--text); padding: 20px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  .subtitle { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+  .nav { display: flex; gap: 12px; margin-bottom: 20px; }
+  .nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  .nav a:hover { text-decoration: underline; }
+
+  .filters { display: flex; gap: 12px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
+  .filters label { font-size: 13px; color: var(--text-dim); }
+  .filters select { background: var(--card); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; font-size: 13px; }
+  .count { font-size: 13px; color: var(--text-dim); margin-left: auto; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--border); color: var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: rgba(88,166,255,0.04); }
+  .rank { font-weight: 700; color: var(--text-dim); width: 36px; }
+  .rank-1 { color: var(--yellow); }
+  .rank-2 { color: var(--text-dim); }
+  .rank-3 { color: #d2a679; }
+  .name-cell { }
+  .name-cell .name { font-weight: 600; }
+  .name-cell .submitter { font-size: 11px; color: var(--text-dim); }
+  .score-bar { display: flex; align-items: center; gap: 8px; }
+  .score-bar-fill { height: 18px; border-radius: 9px; min-width: 4px; transition: width 0.3s; }
+  .score-bar-label { font-weight: 600; font-size: 13px; min-width: 36px; text-align: right; }
+  .tier-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .tier-newborn { background: rgba(248,81,73,0.15); color: var(--red); }
+  .tier-basic { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .tier-functional { background: rgba(88,166,255,0.15); color: var(--accent); }
+  .tier-advanced { background: rgba(63,185,80,0.15); color: var(--green); }
+  .tier-elite { background: rgba(63,185,80,0.25); color: var(--green); }
+
+  .radar-wrapper { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-top: 24px; }
+  .radar-wrapper h3 { font-size: 14px; margin-bottom: 12px; }
+  .radar-grid { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+  .radar-grid canvas { max-width: 340px; max-height: 340px; }
+  .radar-legend { font-size: 13px; }
+  .radar-legend .item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .radar-legend .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  .dim-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  .dim-table th { font-size: 11px; padding: 6px 8px; }
+  .dim-table td { padding: 6px 8px; }
+
+  @media (max-width: 700px) {
+    table { font-size: 12px; }
+    td, th { padding: 6px 8px; }
+    .score-bar-fill { height: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>⚔️ Hermes Arena</h1>
+  <p class="subtitle">Agent Capability Leaderboard — <span id="entryCount">0</span> entries</p>
+  <div class="nav">
+    <a href="https://github.com/xchliu/hermes-arena">GitHub</a>
+    <a href="https://github.com/xchliu/hermes-arena/blob/main/README.md">How to Submit</a>
+  </div>
+
+  <div class="filters">
+    <label>Sort:</label>
+    <select id="sortSelect" onchange="render()">
+      <option value="total-desc">Score ↓</option>
+      <option value="total-asc">Score ↑</option>
+      <option value="date-desc">Newest</option>
+      <option value="date-asc">Oldest</option>
+    </select>
+    <label>Filter by tier:</label>
+    <select id="tierFilter" onchange="render()">
+      <option value="all">All</option>
+      <option value="Newborn">Newborn</option>
+      <option value="Basic">Basic</option>
+      <option value="Functional">Functional</option>
+      <option value="Advanced">Advanced</option>
+      <option value="Elite">Elite</option>
+    </select>
+    <span class="count" id="filterCount"></span>
+  </div>
+
+  <table id="leaderboard">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Total</th>
+        <th>Mem</th>
+        <th>Und</th>
+        <th>Pro</th>
+        <th>Con</th>
+        <th>Rel</th>
+        <th>Lrn</th>
+        <th>Soc</th>
+        <th>Tier</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <div class="radar-wrapper" id="radarSection" style="display:none">
+    <h3>Dimension Radar</h3>
+    <div class="radar-grid">
+      <canvas id="radarCanvas" width="340" height="340"></canvas>
+      <div class="radar-legend" id="radarLegend"></div>
+    </div>
+  </div>
+</div>
+<script>
+const LABELS = ['Memory', 'Understanding', 'Proactivity', 'Consistency', 'Reliability', 'Learning', 'Social'];
+const MAXES = [20, 15, 15, 15, 15, 10, 10];
+const TIER_COLORS = { Newborn: '#f85149', Basic: '#d29922', Functional: '#58a6ff', Advanced: '#3fb950', Elite: '#3fb950' };
+
+let entries = [];
+
+async function load() {
+  try {
+    const r = await fetch('data.json');
+    entries = (await r.json()).entries || [];
+  } catch(e) {
+    // fallback — embed inline if fetch fails
+  }
+  render();
+}
+
+function tierBadge(tier) {
+  const cls = 'tier-badge tier-' + (tier||'newborn').toLowerCase();
+  return `<span class="${cls}">${tier||'Newborn'}</span>`;
+}
+
+function rankClass(i) {
+  if (i === 0) return 'rank-1';
+  if (i === 1) return 'rank-2';
+  if (i === 2) return 'rank-3';
+  return '';
+}
+
+function barColor(pct) {
+  if (pct >= 80) return 'var(--green)';
+  if (pct >= 50) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+function sortedFiltered() {
+  const sort = document.getElementById('sortSelect').value;
+  const tier = document.getElementById('tierFilter').value;
+  let list = [...entries];
+  if (tier !== 'all') list = list.filter(e => (e.tier||'Newborn') === tier);
+  if (sort === 'total-desc') list.sort((a,b) => b.total - a.total);
+  else if (sort === 'total-asc') list.sort((a,b) => a.total - b.total);
+  else if (sort === 'date-desc') list.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  else if (sort === 'date-asc') list.sort((a,b) => (a.date||'').localeCompare(b.date||''));
+  return list;
+}
+
+function render() {
+  const list = sortedFiltered();
+  document.getElementById('entryCount').textContent = entries.length;
+  document.getElementById('filterCount').textContent = `showing ${list.length} of ${entries.length}`;
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = list.map((e, i) => {
+    const s = e.scores || [];
+    return `<tr onclick="selectEntry(${entries.indexOf(e)})" style="cursor:pointer">
+      <td class="rank ${rankClass(i)}">${i+1}</td>
+      <td class="name-cell"><div class="name">${e.name||'Anonymous'}</div><div class="submitter">by ${e.submitter||'?'} · ${e.date||'?'}</div></td>
+      <td><div class="score-bar"><div class="score-bar-fill" style="width:${e.total}px;background:${barColor(e.total)}"></div><span class="score-bar-label">${e.total}</span></div></td>
+      <td>${s[0]??'-'}</td><td>${s[1]??'-'}</td><td>${s[2]??'-'}</td><td>${s[3]??'-'}</td><td>${s[4]??'-'}</td><td>${s[5]??'-'}</td><td>${s[6]??'-'}</td>
+      <td>${tierBadge(e.tier)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function selectEntry(idx) {
+  const e = entries[idx];
+  if (!e) return;
+  const s = e.scores || [];
+  document.getElementById('radarSection').style.display = 'block';
+  drawRadar(s, e.name);
+  const legend = document.getElementById('radarLegend');
+  legend.innerHTML = `<strong>${e.name}</strong> — ${e.total}/100 (${e.tier||'Newborn'})<br><br>`
+    + s.map((v, i) => `<div class="item"><span class="dot" style="background:${barColor(v/MAXES[i]*100)}"></span>${LABELS[i]}: ${v}/${MAXES[i]}</div>`).join('')
+    + (e.note ? `<br><small style="color:var(--text-dim)">${e.note}</small>` : '');
+}
+
+function drawRadar(scores, name) {
+  const c = document.getElementById('radarCanvas');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height, cx = W/2, cy = H/2, R = Math.min(cx, cy) - 30;
+  const n = LABELS.length;
+  ctx.clearRect(0, 0, W, H);
+
+  // background grid
+  for (let ring = 1; ring <= 5; ring++) {
+    const r = R * ring / 5;
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const a = Math.PI/2 - i * 2*Math.PI/n;
+      const x = cx + r * Math.cos(a), y = cy - r * Math.sin(a);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = '#30363d';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // axis lines
+  for (let i = 0; i < n; i++) {
+    const a = Math.PI/2 - i * 2*Math.PI/n;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R*Math.cos(a), cy - R*Math.sin(a));
+    ctx.strokeStyle = '#30363d'; ctx.stroke();
+    // label
+    const lx = cx + (R+18)*Math.cos(a), ly = cy - (R+18)*Math.sin(a);
+    ctx.fillStyle = '#8b949e'; ctx.font = '12px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(LABELS[i], lx, ly);
+  }
+
+  // data
+  if (!scores || scores.length < n) return;
+  ctx.beginPath();
+  for (let i = 0; i <= n; i++) {
+    const idx = i % n;
+    const r = R * (scores[idx] / MAXES[idx]);
+    const a = Math.PI/2 - i * 2*Math.PI/n;
+    const x = cx + r * Math.cos(a), y = cy - r * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.fillStyle = 'rgba(88,166,255,0.2)';
+  ctx.fill();
+  ctx.strokeStyle = '#58a6ff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // dots
+  for (let i = 0; i < n; i++) {
+    const r = R * (scores[i] / MAXES[i]);
+    const a = Math.PI/2 - i * 2*Math.PI/n;
+    ctx.beginPath(); ctx.arc(cx + r*Math.cos(a), cy - r*Math.sin(a), 3, 0, 2*Math.PI);
+    ctx.fillStyle = '#58a6ff'; ctx.fill();
+  }
+}
+
+load();
+</script>
+</body>
+</html>
