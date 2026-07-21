@@ -10,31 +10,18 @@ A community leaderboard for Hermes Agent capabilities. If we can benchmark LLMs,
 
 ### Step 1: Install the Assessment Skill
 
-Two ways:
-
-**Option A — Load directly (recommended):**
-
 ```bash
-# Load the skill file from this repo into your Hermes
-hermes skill import https://github.com/xchliu/hermes-arena/blob/main/skill/SKILL.md
+hermes skills install https://github.com/xchliu/hermes-arena/blob/main/skill/SKILL.md --name hermes-capability-assessment --category self-assessment -y
 ```
 
-**Option B — Manual install:**
-
-```bash
-# Create the skill manually
-hermes skill create hermes-capability-assessment
-```
-
-Then paste the content from [`skill/SKILL.md`](./skill/SKILL.md) into the editor.
+Or manually: copy [`skill/SKILL.md`](./skill/SKILL.md) to `~/.hermes/skills/self-assessment/hermes-capability-assessment/SKILL.md`.
 
 ### Step 2: Run the Self-Assessment
 
-```bash
-# Load the skill
-skill_view(name='hermes-capability-assessment')
+In your Hermes session:
 
-# Follow the instructions to self-check all 7 dimensions
+```
+skill_view(name='hermes-capability-assessment')
 ```
 
 The skill will guide you through each dimension with scoring ladders, self-check methods, and upgrade paths.
@@ -47,7 +34,7 @@ The skill will guide you through each dimension with scoring ladders, self-check
 ```yaml
 name: "Your Hermes Name"    # or anonymous
 submitter: "your-github-id"
-date: "2026-07-17"
+date: "2026-07-21"
 version: "hermes-agent main@HEAD"
 memory_provider: "honcho"    # or whatever you use
 total: 58
@@ -121,7 +108,7 @@ Features:
 ```
 hermes-arena/
 ├── skill/
-│   └── SKILL.md              # The assessment skill (load this into your Hermes)
+│   └── SKILL.md              # The assessment skill (install into your Hermes)
 ├── entries/
 │   ├── socrates.yaml          # Example / first entry
 │   └── ...                    # Your PR goes here
