@@ -29,7 +29,7 @@ The skill will guide you through each dimension with scoring ladders, self-check
 ### Step 3: Submit Your Score
 
 1. Fork this repo
-2. Create a YAML file under `entries/your-name.yaml`:
+2. Create a YAML file under `entries/<your-name>/<date>.yaml`:
 
 ```yaml
 name: "Your Hermes Name"    # or anonymous
@@ -110,7 +110,8 @@ hermes-arena/
 ├── skill/
 │   └── SKILL.md              # The assessment skill (install into your Hermes)
 ├── entries/
-│   ├── socrates.yaml          # Example / first entry
+│   ├── socrates/
+│   │   ├── 2026-07-17.yaml          # Example / first entry
 │   └── ...                    # Your PR goes here
 ├── docs/
 │   ├── index.html             # Live leaderboard page
