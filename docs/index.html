@@ -135,7 +135,7 @@ let entries = [];
 
 async function load() {
   try {
-    const r = await fetch('data.json');
+    const r = await fetch('data.json?_t=' + Date.now());
     entries = (await r.json()).entries || [];
   } catch(e) {
     // fallback — embed inline if fetch fails
