@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -51,4 +53,4 @@ jobs:
           git config user.name 'Hermes Arena Bot'
           git config user.email 'bot@hermes-arena'
           git add docs/data.json
-          git diff --staged --quiet || (git commit -m 'auto: update leaderboard' && git push)
+          git diff --staged --quiet || (git commit -m 'auto: update leaderboard' && git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/xchliu/hermes-arena.git HEAD:main)
