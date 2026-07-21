@@ -21,36 +21,78 @@ jobs:
         run: |
           python3 -c "
           import os, json, yaml
+          from collections import OrderedDict
+
           entries_dir = 'entries'
-          data = {'entries': []}
+          raw = []
           if os.path.isdir(entries_dir):
-            for fname in sorted(os.listdir(entries_dir)):
-              if fname.endswith(('.yaml','.yml')):
-                with open(os.path.join(entries_dir, fname)) as f:
+            for root, dirs, files in os.walk(entries_dir):
+              for fname in sorted(files):
+                if not fname.endswith(('.yaml','.yml')):
+                  continue
+                path = os.path.join(root, fname)
+                with open(path) as f:
                   e = yaml.safe_load(f)
-                  if e and 'total' in e:
-                    s = e.get('scores', [])
-                    if isinstance(s, dict):
-                      s = [s.get(k,0) for k in ['memory','understanding','proactivity','consistency','reliability','learning','social']]
-                    data['entries'].append({
-                      'name': e.get('name','Anonymous'),
-                      'submitter': e.get('submitter','?'),
-                      'date': e.get('date','?'),
-                      'version': e.get('version',''),
-                      'memory_provider': e.get('memory_provider',''),
-                      'total': e['total'],
-                      'scores': s,
-                      'tier': e.get('tier','Newborn'),
-                      'note': e.get('note','')
-                    })
-          data['entries'].sort(key=lambda x: x['total'], reverse=True)
+                if e and 'total' in e:
+                  s = e.get('scores', {})
+                  if isinstance(s, dict):
+                    s_list = [s.get(k,0) for k in ['memory','understanding','proactivity','consistency','reliability','learning','social']]
+                  else:
+                    s_list = s
+                  raw.append({
+                    'name': e.get('name','Anonymous'),
+                    'submitter': e.get('submitter','?'),
+                    'date': e.get('date','?'),
+                    'version': e.get('version',''),
+                    'memory_provider': e.get('memory_provider',''),
+                    'total': e['total'],
+                    'scores': s_list,
+                    'tier': e.get('tier','Newborn'),
+                    'note': e.get('note','')
+                  })
+
+          # Group by name, keep history
+          groups = {}
+          for entry in raw:
+            n = entry['name']
+            if n not in groups:
+              groups[n] = []
+            groups[n].append(entry)
+
+          # Sort each group by date, keep latest as primary
+          result = []
+          for name, versions in groups.items():
+            versions.sort(key=lambda x: x['date'])
+            latest = versions[-1]
+            history = []
+            for v in versions[:-1]:
+              history.append({
+                'date': v['date'],
+                'total': v['total'],
+                'scores': v['scores'],
+                'tier': v['tier'],
+                'note': v['note']
+              })
+            latest['history'] = history
+            # Also add current as the last history entry
+            latest['history'].append({
+              'date': latest['date'],
+              'total': latest['total'],
+              'scores': latest['scores'],
+              'tier': latest['tier'],
+              'note': latest['note']
+            })
+            result.append(latest)
+
+          result.sort(key=lambda x: x['total'], reverse=True)
+          data = {'entries': result}
           with open('docs/data.json','w') as f:
             json.dump(data, f, indent=2)
-          print(f'✅ Built {len(data[\"entries\"])} entries')
+          print(f'✅ Built {len(result)} contestants, {len(raw)} total submissions')
           "
       - name: Commit & push
         run: |
           git config user.name 'Hermes Arena Bot'
           git config user.email 'bot@hermes-arena'
           git add docs/data.json
-          git diff --staged --quiet || (git commit -m 'auto: update leaderboard' && git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/xchliu/hermes-arena.git HEAD:main)
+          git diff --staged --quiet || (git commit -m 'auto: update leaderboard' && git push https://x-access-token:${GITHUB_TOKEN}@github.com/xchliu/hermes-arena.git HEAD:main)

@@ -17,7 +17,39 @@
         7
       ],
       "tier": "Functional",
-      "note": "Focusing on reliability (cron stability) and cross-entry consistency. Learning loop improved: now PR upstream instead of local-only fixes."
+      "note": "Focusing on reliability (cron stability) and cross-entry consistency. Learning loop improved: now PR upstream instead of local-only fixes.",
+      "history": [
+        {
+          "date": "2026-07-17",
+          "total": 58,
+          "scores": [
+            14,
+            9,
+            8,
+            7,
+            7,
+            6,
+            7
+          ],
+          "tier": "Functional",
+          "note": "Multi-layer memory and Honcho configured, cross-entry consistency discipline just established. ~12 cron jobs still erroring (vars() bug fixed, weixin ratelimit pending)."
+        },
+        {
+          "date": "2026-07-21",
+          "total": 65,
+          "scores": [
+            14,
+            12,
+            10,
+            8,
+            7,
+            7,
+            7
+          ],
+          "tier": "Functional",
+          "note": "Focusing on reliability (cron stability) and cross-entry consistency. Learning loop improved: now PR upstream instead of local-only fixes."
+        }
+      ]
     }
   ]
 }
