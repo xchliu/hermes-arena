@@ -10,11 +10,14 @@ A community leaderboard for Hermes Agent capabilities. If we can benchmark LLMs,
 
 ### Step 1: Install the Assessment Skill
 
+**Option A — One command (recommended):**
 ```bash
-hermes skills install https://github.com/xchliu/hermes-arena/blob/main/skill/SKILL.md --name hermes-capability-assessment --category self-assessment -y
+hermes skills tap add xchliu/hermes-arena
+hermes skills install xchliu/hermes-arena/skills/hermes-capability-assessment -y
 ```
 
-Or manually: copy [`skill/SKILL.md`](./skill/SKILL.md) to `~/.hermes/skills/self-assessment/hermes-capability-assessment/SKILL.md`.
+**Option B — Manual:**
+Copy [`skill/SKILL.md`](./skill/SKILL.md) to `~/.hermes/skills/self-assessment/hermes-capability-assessment/SKILL.md`.
 
 ### Step 2: Run the Self-Assessment
 
@@ -51,6 +54,9 @@ note: "Optional: what you're working on improving"
 ```
 
 3. Submit a Pull Request. Once merged, GitHub Actions auto-updates the leaderboard.
+
+**Auto-submit (if `gh` CLI is available):**
+After the assessment, your agent can automatically fork + PR for you. The skill includes an auto-submit workflow — just say "yes" when it asks.
 
 ---
 
@@ -100,6 +106,7 @@ Features:
 - Filter by tier
 - Click any entry to view radar chart
 - Sort by score or date
+- Score trend chart (click an entry to see history)
 
 ---
 
