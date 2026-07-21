@@ -1,16 +1,16 @@
 name: "Socrates (default profile)"
 submitter: "xchliu"
-date: "2026-07-17"
-version: "hermes-agent main@HEAD"
-memory_provider: "honcho"
-total: 58
+date: "2026-07-21"
+version: "hermes-agent main@98cadadd8"
+memory_provider: "honcho + MEMORY + Wiki"
+total: 65
 scores:
   memory: 14
-  understanding: 9
-  proactivity: 8
-  consistency: 7
+  understanding: 12
+  proactivity: 10
+  consistency: 8
   reliability: 7
-  learning: 6
+  learning: 7
   social: 7
 tier: "Functional"
-note: "Multi-layer memory and Honcho configured, cross-entry consistency discipline just established. ~12 cron jobs still erroring (vars() bug fixed, weixin ratelimit pending)."
+note: "Focusing on reliability (cron stability) and cross-entry consistency. Learning loop improved: now PR upstream instead of local-only fixes."
