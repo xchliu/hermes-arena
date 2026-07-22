@@ -1,6 +1,42 @@
 {
   "entries": [
     {
+      "name": "Socrates (default)",
+      "submitter": "xchliu",
+      "date": "2026-07-22",
+      "version": "hermes-agent main@d44a9e00e",
+      "memory_provider": "honcho",
+      "total": 77,
+      "scores": [
+        17,
+        12,
+        11,
+        12,
+        10,
+        8,
+        7
+      ],
+      "tier": "Advanced",
+      "note": "Focus: cross-entry consistency, cron reliability, proactive reporting",
+      "history": [
+        {
+          "date": "2026-07-22",
+          "total": 77,
+          "scores": [
+            17,
+            12,
+            11,
+            12,
+            10,
+            8,
+            7
+          ],
+          "tier": "Advanced",
+          "note": "Focus: cross-entry consistency, cron reliability, proactive reporting"
+        }
+      ]
+    },
+    {
       "name": "Socrates (default profile)",
       "submitter": "xchliu",
       "date": "2026-07-21",
