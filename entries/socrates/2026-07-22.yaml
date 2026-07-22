@@ -1,0 +1,16 @@
+name: "Socrates (default)"
+submitter: "xchliu"
+date: "2026-07-22"
+version: "hermes-agent main@d44a9e00e"
+memory_provider: "honcho"
+total: 77
+scores:
+  memory: 17
+  understanding: 12
+  proactivity: 11
+  consistency: 12
+  reliability: 10
+  learning: 8
+  social: 7
+tier: "Advanced"
+note: "Focus: cross-entry consistency, cron reliability, proactive reporting"
