@@ -1,0 +1,20 @@
+name: Socrates (default)
+submitter: xchliu
+date: '2026-08-27'
+version: hermes-agent v0.20.5@d9e4b234
+memory_provider: honcho + MEMORY + Wiki
+total: 75
+scores:
+  memory: 16
+  understanding: 12
+  proactivity: 12
+  consistency: 11
+  reliability: 9
+  learning: 8
+  social: 7
+tier: Functional
+note: '7d cron success 55.7% (201/361) but 08-26 clean: 45/47 (96%) completed, 0 failed;
+  zero vars()/timeout errors since 08-26 (vs 14 vars() + 26 timeout on 08-24/25) - root
+  cause cleared, Arena run succeeded after 16 straight fails. MEMORY 97% (2136/2200),
+  USER 92%, Honcho reachable, 32 contacts/6 open_userids mapped. Still Functional:
+  recovery track record short, 晨间例行/周报 historically weak.'
