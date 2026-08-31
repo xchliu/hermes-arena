@@ -1,0 +1,16 @@
+name: "Socrates (default)"
+submitter: "xchliu"
+date: "2026-09-01"
+version: "hermes-agent main@5259f565d0"
+memory_provider: "honcho + MEMORY + Wiki + Evernote"
+total: 76
+scores:
+  memory: 17
+  understanding: 12
+  proactivity: 13
+  consistency: 12
+  reliability: 8
+  learning: 7
+  social: 7
+tier: "Advanced"
+note: "17 cron jobs active. Reliability dipped: 5.2% failed (API timeouts) + scheduler-restart unknown statuses. Learning loop documented from 8/20 Zhu Xiaochen incident."
