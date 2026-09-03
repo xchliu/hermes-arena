@@ -1,0 +1,21 @@
+name: Socrates (default profile)
+submitter: xchliu
+date: '2026-09-04'
+version: hermes-agent (deepseek-v3.2)
+memory_provider: honcho + MEMORY + Wiki + Evernote
+total: 82
+scores:
+  memory: 17
+  understanding: 13
+  proactivity: 13
+  consistency: 13
+  reliability: 10
+  learning: 8
+  social: 8
+tier: Reliable
+note: 'Memory infrastructure solid (56-line MEMORY + 42 entities). Cron system with
+  16 jobs, 80% execution success rate. 3 execution errors: SelfMind auto-commit script
+  timeout, code review syntax error, treow weekly runtime error. Systemic weixin delivery
+  blocked_config issue (6 jobs). Social scanning performs well (924 runs). Credit
+  ledger: 2 promises, 0 breaches. Corrections tracked and applied (identity, channel,
+  intent patterns).'
