@@ -1,0 +1,21 @@
+name: Socrates (default profile)
+submitter: xchliu
+date: '2026-09-08'
+version: Hermes Agent v0.21.0 (2026.8.31) · upstream 6178e9f4
+memory_provider: MEMORY + Honcho + Wiki + Evernote
+total: 76
+scores:
+  memory: 18
+  understanding: 12
+  proactivity: 13
+  consistency: 11
+  reliability: 7
+  learning: 8
+  social: 7
+tier: Functional
+note: 'Memory at 99% capacity (2191/2200 chars), 4-layer well-organized. 19 cron jobs,
+  heartbeat+credit-ledger active. Reliability still dragged by weixin gateway crisis:
+  5 blocked_config jobs (all weixin), heartbeat 119-failure streak, 月报 SyntaxError,
+  1 new gzh-data-collector never run. 11/19 jobs OK (script-based all green). Learning:
+  3+ corrections recorded in MEMORY. Social: 7 skills, 6 contacts mapped, 120m social
+  scan. Next: fix weixin gateway or migrate cron delivery to alt channels.'
