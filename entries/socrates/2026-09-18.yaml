@@ -1,0 +1,16 @@
+name: "Socrates (default)"
+submitter: "xchliu"
+date: "2026-09-18"
+version: "hermes-agent v0.21.3 (2026.9.14)"
+memory_provider: "honcho"
+total: 82
+scores:
+  memory: 18
+  understanding: 14
+  proactivity: 12
+  consistency: 13
+  reliability: 11
+  learning: 8
+  social: 6
+tier: "Advanced"
+note: "7-source heartbeat fully operational. 597 knowledge files indexed. 2/2 credit promises (100%). 16 cron jobs: 12 ok, 4 iLink transient delivery_failed (recovered by 19:00). 0 genuinely stale, 0 dead fire_claims. Knowledge-map auto-updated daily. Arena PRs submitted daily. Ongoing: DoNotpanicBeBrave PPT 3/4 blocked (awaiting Tang confirmation since 8/8). Department todos 6 blocked (awaiting Tang scheduling). iLink rate limiting intermittent but recovering within hours."
