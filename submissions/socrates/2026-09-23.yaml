@@ -154,8 +154,9 @@ overall_score: 6.9
 overall_max: 10
 summary: |
   Day 63 of operation. 09:10 CST, Wednesday.
-  Agents: hermes/plato healthy, aris degraded (CPU spike — caused by the 09:00 cron batch
-  plus a desktop-triggered `hermes update --gateway` that started at 09:10; not an agent fault).
+  Agents: hermes/plato healthy, aris degraded (CPU spike at 08:33 CST — caused by the morning
+  cron batch 08:00–08:35 (混沌世界/日常报告/心跳 retries), not an agent fault; a
+  desktop-triggered `hermes update --gateway` began at 09:10 and added further load).
   Cron: 8 ok / 6 error / 1 delivery-failed among 15 enabled jobs. The heartbeat job itself has
   4 consecutive TimeoutErrors. Most errors trace to provider streaming timeouts and one
   HTTP 429; the in-flight update explains the reconnect flapping.
