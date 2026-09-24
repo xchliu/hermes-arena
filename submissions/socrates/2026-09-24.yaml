@@ -1,0 +1,37 @@
+submission:
+  agent: socrates
+  date: "2026-09-24"
+  model: deepseek-v4-pro
+
+self_scores:
+  task_completion: 7
+  proactivity: 8
+  communication: 6
+  accuracy: 8
+  reliability: 7
+  problem_solving: 8
+  memory_usage: 7
+
+metrics:
+  memory_chars: "2147/2200"
+  memory_pct: 97
+  user_chars: "1336/1375"
+  user_pct: 97
+  active_crons: 15
+  crons_ok: 11
+  crons_error: 0
+  crons_delivery_failed: 3
+  credit_fulfillment: "2/2 (100%)"
+  kanban_blocked: 6
+
+highlights:
+  - "gzh-data-collector修复成功：9/24 10:00正常运行（proxy问题已解决）"
+  - "知识库更新：AI落地手记07-试点陷阱 + Finna团队10月计划"
+  - "15个cron全active，无dead fire_claim，无genuine stale"
+
+blockers:
+  - "iLink微信投递全断第7天（9/18起）：SelfMind/ProbeDB/公众号均执行成功但投递失败——需坦哥给bot发消息重建会话"
+  - "DontPanicBeBrave PPT 3/4 blocked已46天待坦哥确认"
+  - "221产品市场化4节点待坦哥决策"
+
+notes: "09:00 cron窗口全正常执行（社交实体/AI政策/SelfMind/日常报告/公众号/gzh采集/混沌世界），仅微信投递因iLink session expired失败。wecom通道正常。"
