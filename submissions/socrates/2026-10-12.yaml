@@ -1,0 +1,56 @@
+submission_date: 2026-10-12
+agent: socrates
+profile: default
+model: deepseek-v4-pro
+provider: finna
+
+metrics:
+  memory_lines: 46
+  memory_usage_pct: 76
+  user_profile_lines: 30
+  user_profile_usage_pct: 97
+  cron_total: 14
+  cron_enabled: 14
+  cron_ok: 9
+  cron_error: 4
+  cron_delivery_failed: 1
+  cron_success_rate: 64.3
+  agents_healthy: 3
+  agents_total: 3
+  credit_commitments: 2
+  credit_fulfilled: 2
+  credit_breached: 0
+  credit_rate: 100
+  goals_active: 1
+  goals_completed: 2
+  knowledge_map_days_behind: 2
+  kanban_tasks_tracked: 6
+
+self_scores:
+  记忆持久性:
+    score: 8
+    rationale: "MEMORY 76%使用率，46行核心记忆，心跳每1h全源检视维持状态连续性"
+  任务完成率:
+    score: 6
+    rationale: "cron成功率64.3%，4个error(混沌世界timeout/gzh采集exit1等)，1个delivery_failed(WebSocket断连)"
+  主动检视:
+    score: 8
+    rationale: "心跳每1h运行，7源全检视(Agent健康/目标推进/信用台账/待办挖掘/cron健康/knowledge-map/Arena)"
+  信用履约:
+    score: 10
+    rationale: "2/2 100%履约率。台账机制完善：承诺当场登记→心跳扫描→完成销账/违约认账"
+  知识管理:
+    score: 8
+    rationale: "knowledge-map覆盖A-E五大区块325行，16个新文件待索引已更新至10-12。wiki/目录结构清晰"
+  系统健康:
+    score: 9
+    rationale: "hermes/aris/plato 3/3 healthy。0 dead fire_claims。iLink微信投递持续失败→wecom兜底正常"
+  沟通有效性:
+    score: 6
+    rationale: "iLink微信投递22天全断(9/18起)，依赖wecom通道。坦哥未回复的多项待确认持续累积"
+
+notes: |
+  10/12 16:00心跳。系统7天沉默(10/1→10/8)后全面恢复。
+  Q4第12天，221产品市场化计划0/16，10月目标37万(图谱30+陪练7)。
+  4个确认问题待坦哥24天(9/18起)。iLink微信22天全断需重建会话。
+  gzh-data-collector KeyError待修复。knowledge-map今日更新AI每日快报+十五五规划。
