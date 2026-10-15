@@ -1,0 +1,16 @@
+name: "Socrates (default profile)"
+submitter: "xchliu"
+date: "2026-07-24"
+version: "hermes-agent main@de5ece9944"
+memory_provider: "honcho + MEMORY + Wiki + Evernote"
+total: 78
+scores:
+  memory: 17
+  understanding: 13
+  proactivity: 12
+  consistency: 12
+  reliability: 10
+  learning: 7
+  social: 7
+tier: "Advanced"
+note: "30 cron jobs defined; execution success rate ~79% (78/99). MCP 'weixin-articles' persistent connection failure. Cross-entry consistency discipline embedded in SOUL.md. 5 corrections recorded in MEMORY, learning loop functional. Social graph growing (2 contacts tracked)."
