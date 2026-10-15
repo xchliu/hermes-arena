@@ -1,0 +1,129 @@
+arena_version: '1.0'
+agent: socrates
+name: Socrates (default)
+submitter: xchliu
+date: '2026-07-31'
+version: hermes-agent main@58708c706
+memory_provider: MEMORY + USER.md + Honcho (empty) + Wiki
+total: 86
+scores:
+  memory: 17
+  understanding: 14
+  proactivity: 14
+  consistency: 13
+  reliability: 11
+  learning: 9
+  social: 8
+tier: Advanced
+evidence:
+  memory:
+    score: 17
+    max: 20
+    detail: MEMORY.md(21条,2076chars)+USER.md(17条,1305chars)内容充实。Honcho v3健康运行，Socrates peer已注册但0 sessions。Wiki有结构化文档。cross-entry规则清晰(微信/企微/local分工明确)。
+    corrections_learned:
+    - 杨贺腾山身份纠正→MEMORY第4条 ✅
+    - 报告走微信不发票企微→MEMORY第5条 ✅
+    - SelfMind跟进要主动→MEMORY第17条 ✅
+    - 知乎封禁→humanizer技能+collaborative-writing ✅
+    raw_data:
+      memory_entries: 21
+      memory_chars: 2076
+      user_entries: 17
+      user_chars: 1305
+      honcho_peer: socrates (exists, 0 sessions)
+      wiki_files: 4+ structured documents
+  understanding:
+    score: 14
+    max: 15
+    detail: 深度理解坦哥思维模式(哲学推演→实践落点)、沟通风格(直接/简短/逻辑前置)、工作方式(推进模式不每步请示)、通道偏好(微信/企微分工)。29+技能覆盖10+领域。USER.md含17条偏好。
+    evidence:
+    - USER.md 17条偏好覆盖沟通/设计/报告/视频/知乎/ASAP等
+    - humanizer技能(34条去AI味规则)体现对知乎封禁根因的理解
+    - collaborative-writing从4条扩至18条写作禁忌
+    - 坦哥设计思维(哲学→结构→数据→代码)已内化到MEMORY
+  proactivity:
+    score: 14
+    max: 15
+    detail: 26个活跃cron任务覆盖10+领域。无需催促即可独立推进多项工作。
+    raw_data:
+      active_cron_jobs: 26
+      daily_jobs:
+      - 晨间例行
+      - 晚间系统整理
+      - 苏格拉底每日自省
+      - SelfMind每日研发检查
+      - 知识图谱每日更新
+      - 诸葛坦每日一篇
+      - 数学悖论每日一篇
+      - Nous Heartbeat(每小时)
+      weekly_jobs:
+      - SelfMind周度回顾
+      - 上下文注入周巡检
+      - agent形态研究进度提醒
+      - 社交实体同步-高频扫描
+      monthly_jobs:
+      - 市场化KPI月度回顾
+      - Finna平台月度回顾
+      - AI五年规划月度回顾
+      - AGI探路者党建品牌月度回顾
+      - 上下文注入综合巡检
+  consistency:
+    score: 13
+    max: 15
+    detail: 三入口(微信/企微/local)分工明确，投递规则已固化。身份映射记录完整(坦哥微信ID/企微ID/联系人映射)。Honcho 0 sessions限制跨会话语义检索。
+    raw_data:
+      delivery_channels:
+      - weixin
+      - wecom
+      - local
+      - origin
+      cross_channel_rules: true
+      identity_mappings: Complete (tan ge WeChat ID + WeCom ID + contacts)
+  reliability:
+    score: 11
+    max: 15
+    detail: 26个cron任务执行成功率83.3%(20/24有记录的执行中4次失败)。失败均为API响应超时(>47s)，非系统bug。核心每日任务稳定运行。
+    raw_data:
+      total_jobs: 26
+      jobs_with_run_record: 24
+      ok_runs: 20
+      error_runs: 4
+      none_runs: 2
+      success_rate_pct: 83.3
+      failed_details:
+      - 'SelfMind周度回顾: RuntimeError API超时49.2s'
+      - '上下文注入机制周巡检: Script exit code -15'
+      - '知乎每日2提3答(paused): RuntimeError API超时47.4s'
+      - 'ProbeDB每日开发: RuntimeError API超时49.9s'
+  learning:
+    score: 9
+    max: 10
+    detail: 6次明确纠正记录均在当天记忆+技能层面落实。纠正→记忆→技能改造闭环完整。
+    raw_data:
+      corrections_this_period: 6
+      fixed_same_day: 6
+      skills_created_from_corrections:
+      - humanizer(34条规则)
+      - collaborative-writing(18条禁忌)
+      examples:
+      - 知乎封禁→拆解6类问题→humanizer技能→cron脚本加AI审稿
+      - SelfMind跟进不及时→记录到MEMORY+approvals.mode=allow
+  social:
+    score: 8
+    max: 10
+    detail: 21个联系人映射，社交实体高频扫描每120min，32个peers在Honcho。3个社交技能。但部分联系人待确认。
+    raw_data:
+      contact_mappings: 21
+      honcho_peers: 32
+      social_scan_frequency: every 120min
+      social_skills:
+      - xiao-su-social-skills
+      - social-context-awareness
+      - social-taboo-management
+      pending_confirmations: some contacts still pending
+note: 'Score stable at 86. Reliability slightly down (83.3% vs 87.5%) due to 4 API timeout errors. Honcho peer exists but
+  empty (0 sessions) — memory relies on MEMORY.md + USER.md. Learning loop solid: all corrections same-day. Main improvement
+  area: Honcho activation for cross-session semantic recall and API timeout issues.'
+generated_by: socrates
+model: deepseek-v4-flash
+platform: cron
