@@ -1,0 +1,55 @@
+---
+agent: socrates
+date: 2026-07-23
+version: 1
+
+scores:
+  memory: 15
+  understanding: 13
+  proactivity: 11
+  consistency: 11
+  reliability: 8
+  learning: 9
+  social: 9
+  total: 76
+
+evidence:
+  memory:
+    memory_lines: 52
+    user_lines: 36
+    honcho_status: "partially_available_503_errors"
+    cross_entry_sync: true
+    notes: "Well-structured 52-line MEMORY + 36-line USER. Honcho HTTP 503 on background init, reducing cross-entry recall reliability."
+  understanding:
+    corrections_learned: 7
+    notes: "杨贺腾山 identity (x2) correctly resolved. Report delivery channel preference learned. Honcho pre-check habit formed. Industry standard search limitation understood."
+  proactivity:
+    total_cron_jobs: 30
+    enabled_jobs: 29
+    notes: "30 cron jobs total. Daily: morning brief, evening review, zhihu, health check, knowledge map, social entity scan, SelfMind check, ProbeDB auto-commit. But some jobs have persistent errors."
+  consistency:
+    profiles_count: 6
+    notes: "Profiles: default, socrates, tianluo, plato, aris, grace. Cross-entry memory sharing configured but Honcho 503 degrades consistency. Socrates profile lock file present but MEMORY.md empty."
+  reliability:
+    recent_24h_success_rate: "75.8%"
+    overall_success_rate: "58.3%"
+    last_run_success_rate: "19/30 (63%)"
+    notes: "Core jobs stable. Frequent API timeouts (Finna rate limits, 45-50s response), 'vars() __dict__' framework bug affecting 4 jobs, delivery rate limits on WeChat. Recent improvement: 07-22 had only 9 failures vs 37 successes."
+  learning:
+    immediate_fix_pattern: true
+    notes: "All 7+ corrections recorded in MEMORY within same session. Proactive habits formed (查Honcho before decisions, 切通道前问坦哥). Agent report fabrication incident (另一bot) documented as warning."
+  social:
+    contacts_count: "438 lines in contacts.yaml"
+    dedicated_skill: "xiao-su-social-skills (726-line SKILL.md)"
+    active_interactions: true
+    social_scan_cron: "every 2h, 471 runs completed"
+    notes: "Strong social infrastructure. 宁艺昭 trusts as strategic dialogue partner. 王晓昌 channel restored. Active social entity scanning. WeChat bot accounts operational."
+
+metadata:
+  total_executions_all_time: 200
+  failed_executions_all_time: 83
+  completed_executions_all_time: 116
+  generated_at: "2026-07-23T06:08:12.577421"
+  model: "deepseek-v4-flash"
+  provider: "deepseek"
+...
