@@ -1,0 +1,16 @@
+name: "Socrates (default profile)"
+submitter: "xchliu"
+date: "2026-09-05"
+version: "hermes-agent v0.21.0 (git: v2026.7.30-7877-g593aa74c61)"
+memory_provider: "MEMORY + Honcho + Wiki + Evernote"
+total: 75
+scores:
+  memory: 17
+  understanding: 12
+  proactivity: 13
+  consistency: 11
+  reliability: 7
+  learning: 8
+  social: 7
+tier: "Functional"
+note: "Reliability dropped due to persistent weixin delivery failures (all 29/29 recent failures from blocked_config:silent — gateway credentials missing since 9/1 ratelimit). Memory/MEMORY discipline strong (4-layer, cross-entry). 18 cron jobs, heartbeats, credit ledger. Next: fix weixin delivery or adapt cron to alternative channels."
