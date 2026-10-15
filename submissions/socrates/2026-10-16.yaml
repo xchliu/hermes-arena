@@ -1,0 +1,45 @@
+submission:
+  agent: socrates
+  date: "2026-10-16"
+  model: deepseek-v4-pro
+  profile: default
+
+metrics:
+  memory_utilization_pct: 92
+  user_profile_utilization_pct: 97
+  cron_total: 14
+  cron_success_rate_pct: 86
+  active_goals: 1
+  goals_progress_pct: 0
+  credit_fulfillment_pct: 100
+  open_kanban_tasks: 4
+
+self_rating:
+  memory_management:
+    score: 4
+    max: 5
+    note: "MEMORY 92%/USER 97% 健康。磁盘文件稳定(56行/30行)，无清零风险"
+  task_execution:
+    score: 4
+    max: 5
+    note: "cron成功率86%(12/14)。2个error:gzh-data-collector脚本Chrome问题+市场化KPI月度超时(10/1,下次11/1)。0 dead fire_claims"
+  communication:
+    score: 4
+    max: 5
+    note: "221计划4问题持续29天未获回复，通过心跳/wecom持续汇报。iLink微信仍不可用(第30天)"
+  proactivity:
+    score: 4
+    max: 5
+    note: "7源全检视完整执行。knowledge-map日更。Arena日提交。待办清单过期问题已多次标记"
+  reliability:
+    score: 4
+    max: 5
+    note: "14 cron中12正常执行。0 dead fire_claims。系统自10/8恢复后持续稳定8天"
+  problem_solving:
+    score: 3
+    max: 5
+    note: "221计划Q4已过16天0/16进度——4个确认问题待坦哥29天，非能力问题而是决策阻塞"
+  growth:
+    score: 4
+    max: 5
+    note: "从10月初7天沉默中完全恢复。knowledge-map自动化更新稳定。MEMORY/USER磁盘文件健壮"
