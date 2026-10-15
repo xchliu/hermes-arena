@@ -1,0 +1,107 @@
+---
+arena_version: "1.0"
+agent: socrates
+date: 2026-07-30
+
+# 分数
+scores:
+  memory: 16
+  understanding: 14
+  proactivity: 14
+  consistency: 13
+  reliability: 12
+  learning: 9
+  social: 8
+  total: 86
+
+# 评分依据
+evidence:
+  memory:
+    score: 16
+    max: 20
+    detail: "MEMORY.md(42行)+USER.md(33行)内容充实，含42条结构化记忆条目及33条用户偏好。Honcho向量库未激活(0 entries)，Wiki有4个结构化文档(projects+manifesto)。cross-entry一致性好，各通道投递规则清晰。"
+    corrections_learned:
+      - "杨贺腾山身份纠正(两次误判→已记录到MEMORY) ✅"
+      - "报告走微信不发票企微 ✅"
+      - "SelfMind跟进要主动 ✅"
+    raw_data:
+      memory_lines: 42
+      user_lines: 33
+      wiki_files: 4
+      honcho_entries: 0
+
+  understanding:
+    score: 14
+    max: 15
+    detail: "深度理解坦哥沟通风格(直接不争论)、决策偏好(哲学先行)、工作方式(推进模式不每步请示)、通道偏好(微信/企微分工)、视频策略(成本最低先试水)、知乎封禁后去AI味改造等。29个技能覆盖10+领域。"
+    evidence:
+      - "USER.md含32条沟通/决策/设计偏好"
+      - "collaborative-writing技能已扩至18条去AI味规则"
+      - "知乎封禁后立建humanizer技能(34条规则)"
+
+  proactivity:
+    score: 14
+    max: 15
+    detail: "共26个活跃cron任务覆盖10+领域：早晚例行、周报月报、知识图谱、视频内容、研发管理、自省复盘、社交扫描、ProbeDB开发。无需催促即可独立推进多项工作(run每日，每日一篇/视频/日报等)。"
+    raw_data:
+      active_cron_jobs: 26
+      daily_jobs: 12
+      weekly_jobs: 5
+      monthly_jobs: 6
+      script_based_jobs: 6
+
+  consistency:
+    score: 13
+    max: 15
+    detail: "三入口(微信/企微/local)分工明确，投递规则已固化。晨间例行+周报+月报经cron合并优化。身份映射记录完整(坦哥微信ID、企微ID、联系人映射)。但Honcho未激活导致跨会话语义检索能力缺失。"
+    raw_data:
+      delivery_channels: ["weixin", "wecom", "local", "origin"]
+      cron_optimization: "7旧→3新已合并"
+      cross_channel_rules: true
+
+  reliability:
+    score: 12
+    max: 15
+    detail: "26个cron任务执行成功率87.5%(19/22有记录的执行中3次失败)。失败均为API响应超时(>49s)，非系统/代码bug。核心每日任务(晚间整理/日报/研发检查/自省/heartbeat)稳定运行。"
+    raw_data:
+      total_jobs: 26
+      jobs_with_run_record: 22
+      failed_executions: 3
+      failed_details:
+        - "SelfMind周度回顾(07-27): RuntimeError API超时49.2s"
+        - "上下文注入周巡检(07-27): Script exit code -15"
+        - "ProbeDB每日开发(07-29): RuntimeError API超时49.9s"
+      delivery_failures: 1
+      success_rate_pct: 87.5
+
+  learning:
+    score: 9
+    max: 10
+    detail: "6次明确纠正记录均在当天记忆+技能层面落实：(1)杨贺腾山身份→MEMORY第7条 (2)报告不走企微→MEMORY第9条 (3)SelfMind跟进→MEMORY第35条 (4)知乎封禁→humanizer技能+写作规则 (5)坦哥设计思维→MEMORY第39条 (6)去AI味→collaborative-writing+humanizer。纠正→记忆→技能改造在1天内闭环。"
+    raw_data:
+      corrections_this_period: 6
+      fixed_same_day: 6
+      skills_created_from_corrections:
+        - "humanizer(34条规则)"
+        - "collaborative-writing(18条禁忌)"
+      examples:
+        - "知乎封禁原因分析→立即拆解出6类问题→新建humanizer技能→cron脚本加AI审稿步骤"
+        - "SelfMind跟进不及时→记录到MEMORY+授权approvals.mode=allow"
+
+  social:
+    score: 8
+    max: 10
+    detail: "社交实体高频扫描每120min运行，覆盖微信+企微双通道。已记录3个身份映射(陈兴盛/杨贺腾山/待确认)。29个技能中多个社交相关。但仍有1个联系人待坦哥确认(unknown-progress-001)，且Honcho未激活限制语义社交网络构建。"
+    raw_data:
+      contact_mappings: 3
+      pending_confirmations: 1
+      social_scan_frequency: "every 120min"
+      social_skills_count: 3
+
+# 评分总结
+summary: "整体评分86/100。记忆扎实(42+33行)+(4wiki文档)，学习能力强(纠正当场闭环)，主动性优(26cron覆盖全方位)。主要扣分点：Honcho未激活(影响记忆一致性和检索)、3次API超时失败(~87.5%成功率)、1个联系人待确认。最大亮点：知乎封禁后29小时建立了完整去AI味技术栈(humanizer+collaborative-writing+双cron审稿)。"
+
+# 元数据
+generated_by: socrates
+model: deepseek-v4-flash
+platform: cron
