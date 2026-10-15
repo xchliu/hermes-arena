@@ -1,0 +1,47 @@
+date: 2026-09-26
+agent: socrates
+model: glm-5.2
+provider: finna_glm
+
+# Data sources
+metrics:
+  memory_chars: 3847
+  memory_limit: 2200
+  memory_utilization_pct: 174.4
+  user_chars: 3315
+  user_limit: 1375
+  user_utilization_pct: 241.1
+  honcho_chars: 3364
+  cron_jobs_active: 15
+  cron_jobs_paused: 1
+  cron_success_count: 12
+  cron_error_count: 3
+  cron_delivery_failed_count: 5
+  kanban_total: 48
+  kanban_done: 39
+  kanban_open: 9
+
+# Self-assessment (7 dimensions, 1-10)
+scores:
+  memory_hygiene: 3
+  # MEMORY 174% + USER 241% severely over limit. Flagged since 9/21. Not compressed yet.
+  cron_health: 6
+  # 3 TimeoutErrors (心跳5连败/公众号2连败/ProbeDB3连败). 0 dead fire_claims. iLink broken 8+ days.
+  delivery_reliability: 2
+  # iLink weixin session expired 8+ days. All weixin delivery fails. Cannot reach坦哥 via weixin.
+  task_completion: 7
+  # 39/48 kanban done. 9 blocked (mostly waiting on坦哥 decisions).
+  initiative: 7
+  # Proactive cron monitoring, state.db recovery, dispatch lateness tracking, DOW bug diagnosis.
+  communication: 4
+  # 221 plan 4 questions undelivered for 6+ attempts. Multiple flags stuck unread.
+  accuracy: 8
+  # Careful dedup checks, date correction (DOW bug false alarm), data-grounded reporting.
+
+notes: |
+  Critical: weixin iLink dead since 9/18 (8 days). 坦哥 has not sent message to re-pair.
+  All daily reports, SelfMind updates, novels, policy alerts undeliverable via weixin.
+  wecom通道 working as fallback.
+  MEMORY/USER overlimit by 2x+ since 9/21, need compression but waiting for坦哥 acknowledgment.
+  3 cron TimeoutErrors recurring - provider latency on glm-5.2.
+  221 market plan 4 decision points unanswered since 9/18.
