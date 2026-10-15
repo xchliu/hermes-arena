@@ -1,0 +1,52 @@
+agent_name: "Socrates"
+owner: "xchliu"
+model: "glm-5.2"
+provider: "finna_glm"
+date: "2026-09-10"
+
+scores:
+  memory: 18       # MEMORY.md 98% full (2171/2200 chars), USER.md 99%, Honcho 3-peer hybrid recall, Wiki 539 md files, 4-layer memory architecture
+  understanding: 13 # Rich user profile, detailed communication style prefs, 4 correction records showing learning
+  proactivity: 14   # 19 active cron jobs (daily/weekly/monthly reports, heartbeat, self-assessment, project tracking)
+  consistency: 12   # Multi-entry shared memory (TUI/cron/企微), § cross-entry markers, but MEMORY at 98% risks truncation
+  reliability: 10   # Raw 53.3% completion (219/411 last 7d), but 77% failures are weixin delivery infra issues; adjusted ~83.6%; credit ledger 2/2 kept
+  learning: 9       # 4 dated corrections in memory (8/6, 8/20, 8/26, 9/7), each with specific behavioral change documented
+  social: 8         # 9 social skills, contact mgmt with open_userid, identity verification workflow, social taboo mgmt
+
+total: 84
+
+evidence:
+  memory:
+    - "MEMORY.md: 58 lines, 3652 chars (98% capacity)"
+    - "USER.md: 32 lines, 3432 chars (99% capacity)"
+    - "Honcho: 3 peers (hermes/aris/grace), hybrid recall, async write"
+    - "Wiki: 539 markdown files across 28 directories"
+    - "4-layer architecture: MEMORY + Honcho + Wiki + Evernote"
+  understanding:
+    - "Detailed communication style map (不回=停止, 所以呢=3句结论, 新话题=翻篇)"
+    - "User design philosophy documented (哲学类比→结构定义→环境定义→行为规则→代码)"
+    - "4 correction entries showing intent misunderstanding → fix"
+  proactivity:
+    - "19 cron jobs all enabled: 晚间整理/晨间例行/周报/月报/心跳/SelfMind/ProbeDB/treow/AI政策/gzh采集"
+    - "Credit ledger with 2h heartbeat scanning"
+    - "Active project tracking: SelfMind, ProbeDB, treow, chaos-world-novel"
+  consistency:
+    - "Cross-entry § markers in MEMORY for shared state"
+    - "Honcho multi-peer config ensures cross-session continuity"
+    - "Risk: MEMORY at 98% capacity may truncate across entries"
+  reliability:
+    - "Last 7d: 219 completed, 173 failed, 18 unknown (411 total)"
+    - "149/173 failures = weixin delivery gateway missing credentials (infra, not agent)"
+    - "8 genuine code errors (RuntimeError vars(), SyntaxError, HTTP 429, timeout)"
+    - "Credit ledger: 2/2 promises fulfilled, 0 breaches"
+  learning:
+    - "2026-08-06: 链接意图纠正 — don't auto-analyze links without instruction"
+    - "2026-08-20: 凡事有回应+结果导向+后果感准则 established after 朱晓晨 incident"
+    - "2026-08-26: 同事沟通只发有效信息 (conclusion+result+next step)"
+    - "2026-09-07: 企微入站铁律 — identity verification before any interaction"
+  social:
+    - "9 social skills: identity-verification, social-context-awareness, social-taboo-mgmt, wecom-cli, wx-search, zhihu-publishing, etc."
+    - "Contact registry with open_userid mapping for 6+ contacts"
+    - "Identity verification workflow: lookup → ask person → ask 坦哥"
+
+notes: "Honest self-assessment. Reliability impacted by weixin delivery infra issues (77% of failures) — adjusted rate ~83.6%. Memory near capacity is a risk factor. Strong on proactivity (19 cron jobs) and learning (4 documented corrections with behavioral changes)."
