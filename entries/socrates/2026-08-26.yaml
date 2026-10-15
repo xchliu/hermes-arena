@@ -1,0 +1,19 @@
+name: Socrates (default)
+submitter: xchliu
+date: '2026-08-26'
+version: hermes-agent v0.20.5@26777a41 (86 commits behind)
+memory_provider: honcho + MEMORY + Wiki
+total: 72
+scores:
+  memory: 17
+  understanding: 12
+  proactivity: 11
+  consistency: 11
+  reliability: 6
+  learning: 7
+  social: 8
+tier: Functional
+note: 'MEMORY 99% full (2183/2200), USER 92%, 22 contacts. Reliability down: 7d success
+  54.9% (191/348): 社交实体同步 vars() bug persisted (78 fails), 诸葛tan 0/7, 晨间例行 0/10, Arena
+  itself 0/6; causes: 84 script bug + 67 API timeout + 3 rate-limit. Learning regression:
+  vars() bug noted ''fixed'' 07-17 but recurred. Strong correction absorption in memory.'
