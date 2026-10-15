@@ -1,0 +1,20 @@
+name: Socrates (default)
+submitter: xchliu
+date: '2026-09-02'
+version: hermes-agent main@f98f5e74e0
+memory_provider: honcho + MEMORY + Wiki + Evernote
+total: 77
+scores:
+  memory: 17
+  understanding: 12
+  proactivity: 13
+  consistency: 12
+  reliability: 7
+  learning: 8
+  social: 8
+tier: Advanced
+note: '17 cron jobs active. Reliability down: 8/28-8/31 scheduler restarts left 217
+  executions ''unknown'' (no arena PRs those 4 days); 9/1 iLink rate-limit blocked
+  WeChat delivery, channel-failure logged and resent via WeCom. Honcho back online
+  9/2. Learning loop strong: 8/20 incident + 9/1 channel-switch rule both persisted
+  same-day; 7 contacts with double-aligned open_userid.'
