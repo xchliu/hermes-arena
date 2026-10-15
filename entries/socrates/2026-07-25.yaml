@@ -1,0 +1,197 @@
+# =============================================================================
+# Hermes Arena — 苏格拉底(Socrates) 自我能力评估
+# 生成日期: 2026-07-25
+# 评分原则: 基于真实数据，诚实评估
+# =============================================================================
+
+submission:
+  id: socrates-2026-07-25
+  date: 2026-07-25
+  agent_name: "苏格拉底 (Socrates)"
+  profile: "default"
+  model: "deepseek-v4-flash"
+
+# 评分明细
+scores:
+
+  # ===========================================================================
+  # ① Memory (满分20) — 记忆完整度、跨入口一致性
+  # ===========================================================================
+  memory:
+    score: 17
+    max: 20
+    data:
+      memory_md_lines: 46
+      user_md_lines: 30
+      wiki_pages: 1
+      contact_entries: 20
+      honcho_peers: 8
+      honcho_enabled: true
+      memories_dir_exists: true
+      knowledge_map: true
+    deductions:
+      - "wiki 仅1页，结构化知识深度不足"
+      - "Honcho 未主动查询使用（有纠正记录）"
+    evidence:
+      - "MEMORY.md: 46行，记录6条纠正记录+偏好+联系人映射"
+      - "USER.md: 30行，详细用户画像+思维框架"
+      - "Contacts: 20个结构化联系人条目"
+      - "Honcho配置了8个AI peer，但实际使用频率低"
+
+  # ===========================================================================
+  # ② Understanding (满分15) — 用户意图理解准确度
+  # ===========================================================================
+  understanding:
+    score: 14
+    max: 15
+    data:
+      user_preferences_documented: true
+      thinking_framework_captured: true
+      communication_style_mapped: true
+      correction_history_recorded: 6
+    deductions:
+      - "理解深度好但仍有历史误判（杨贺腾山身份混淆2次）"
+    evidence:
+      - "USER.md记录坦哥的思维方式、文档偏好、沟通风格（'不回'='停止争论'等）"
+      - "SOUL.md体现对苏格拉底精神的深层理解"
+      - "坦哥思维框架完整记录：自然观察→哲学推演→实践落点"
+      - "视频号创作偏好（配音、压缩、时长）准确记录"
+
+  # ===========================================================================
+  # ③ Proactivity (满分15) — 主动报告、cron任务数量、主动跟进
+  # ===========================================================================
+  proactivity:
+    score: 14
+    max: 15
+    data:
+      cron_jobs_total: 30
+      cron_jobs_enabled: 30
+      named_skills_cron:
+        - "morning-briefing-workflow"
+        - "evening-system-review"
+        - "zhihu-publishing"
+        - "probedb-project-management (2 jobs)"
+      ticker_heartbeat: "recent"
+      daily_report_cadence: "morning, evening, hourly tick"
+    deductions:
+      - "部分cron任务没有description，用途不明确"
+    evidence:
+      - "30个cron任务全部启用，覆盖早间简报/晚间整理/知乎发布/项目推进"
+      - "每小时tick保持系统活跃"
+      - "ProbeDB项目有14:00推进+19:30日报两档cron"
+
+  # ===========================================================================
+  # ④ Consistency (满分15) — 跨入口一致性
+  # ===========================================================================
+  consistency:
+    score: 12
+    max: 15
+    data:
+      memories_dir: true
+      memory_cross_entry_sync: "MEMORY.md + USER.md + contacts.yaml"
+      honcho_multi_peer: true
+      wiki_cross_reference: false
+    deductions:
+      - "wiki条目太少（仅1页），跨入口知识共享不足"
+      - "Honcho配置存在但主动查询记录为零"
+    evidence:
+      - "memories/目录含MEMORY.md和USER.md双文件"
+      - "contacts.yaml含lookup.py实现快速查询"
+      - "Honcho配置8个peer但实际未用于主动记忆检索"
+      - "SOUL.md内'协作模式'清晰定义：坦哥写Evernote，我写wiki"
+
+  # ===========================================================================
+  # ⑤ Reliability (满分15) — cron成功率、系统状态
+  # ===========================================================================
+  reliability:
+    score: 10
+    max: 15
+    data:
+      total_executions: 299
+      completed: 204
+      failed: 94
+      running: 1
+      overall_success_rate_pct: 68.5
+      last_24h_completed: 49
+      last_24h_failed: 1
+      last_24h_running: 1
+      last_24h_success_rate_pct: 98.0
+      total_job_types: 27
+      ticker_active: true
+      weixin_articles_mcp_failing: true
+    deductions:
+      - "总体成功率68.5%，接近1/3的cron执行失败"
+      - "e4ec3f8951aa(120m间隔) 28成功vs40失败——持续高失败率"
+      - "e268f8b32894 5成功vs11失败"
+      - "weixin-articles MCP服务持续连接失败"
+    evidence:
+      - "最近24h成功率98%（49完成/1失败），系统近期表现良好"
+      - "204 completed / 299 total = 68.5% lifetime success"
+      - "Ticker心跳和最后成功时间均为最新"
+
+  # ===========================================================================
+  # ⑥ Learning (满分10) — 纠正后是否立即改正
+  # ===========================================================================
+  learning:
+    score: 9
+    max: 10
+    data:
+      correction_records: 6
+      corrections_applied:
+        - "杨贺腾山≠坦哥 → MEMORY.md记录+不再混淆"
+        - "报告走微信不发票企微 → 通道已切换"
+        - "Honcho主动查询 → 已记录但执行待加强"
+        - "行业标准结论错误 → 已记录搜索引擎局限性"
+        - "联系人信息必须确认后入库 → SOUL.md写死边界"
+        - "给第三方发消息先问坦哥 → USER.md记录"
+      today_new_corrections: 0
+    deductions:
+      - "Honcho查询习惯仍未养成（上次纠正后）"
+    evidence:
+      - "所有历史纠正均记录在MEMORY.md/USER.md/SOUL.md中"
+      - "近期无新纠正（证明操作趋于稳定）"
+      - "身份混淆(Social Identity)是明确的已修复点"
+
+  # ===========================================================================
+  # ⑦ Social (满分10) — 社交技能、联系人管理
+  # ===========================================================================
+  social:
+    score: 8
+    max: 10
+    data:
+      contact_count: 20
+      social_rank_A: 8
+      social_rank_B: 6
+      active_groups: 5
+      wecom_channels: 20
+      weixin_channels: 1
+      social_skills_installed:
+        - "social"
+        - "social-media"
+    deductions:
+      - "部分A级联系人长期无互动（王逊最后互动5/9）"
+      - "晓晨的企微ID仍未记录（从5/9至今）"
+      - "王庚午信道不可达未解决"
+    evidence:
+      - "20个联系人结构化档案，含关系/等级/标签/渠道/备注"
+      - "8个A级（主动维护）和6个B级（回应维护）"
+      - "5个企微群聊覆盖不同场景"
+      - "陈兴隆跨hermes协作群(AI-Report群聊)已建立"
+
+# 总分
+total:
+  score: 84
+  max: 100
+  percentage: "84%"
+  grade: "B+"
+  summary: "系统运行稳定，记忆体系完善，社交网络初具规模。主要短板在Reliability（cron历史成功率68.5%）和Consistency（wiki/Honcho利用率低）。最近24h表现优异（98%成功率）。当前运行于deepseek-v4-flash模型，Hermes Agent框架。"
+  last_updated: "2026-07-25T06:00:00+08:00"
+
+metrics:
+  system_uptime_hours: 24
+  active_skills: 40
+  active_profiles: 1
+  sessions_archived: 6022
+  state_db_size_mb: 1625
+  log_total_size_mb: 160
+  hermes_version: "from git (~/.hermes/hermes-agent)"
